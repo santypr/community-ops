@@ -1,0 +1,79 @@
+openapi: 3.0.3
+info:
+  title: Community Ops API
+  version: 0.1.0
+  description: Catálogo público de eventos. Sin operaciones de escritura ni autenticación de usuarios.
+servers:
+  - url: http://localhost:5111
+    description: Desarrollo local
+paths:
+  /api/events:
+    get:
+      operationId: listEvents
+      summary: Lista los primeros 50 eventos por fecha de inicio ascendente
+      description: Sin filtros ni paginación. Incluye eventos pasados. Una colección vacía es un resultado válido.
+      responses:
+        '200':
+          description: Eventos disponibles
+          content:
+            application/json:
+              schema:
+                type: array
+                maxItems: 50
+                items:
+                  $ref: '#/components/schemas/CommunityEvent'
+        '500':
+          description: Error interno o de persistencia sin detalles sensibles
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /health:
+    get:
+      operationId: health
+      summary: Estado de vida del proceso, no de Cosmos
+      responses:
+        '200':
+          description: Proceso operativo
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Healthy
+components:
+  schemas:
+    CommunityEvent:
+      type: object
+      required: [id, communityId, title, startsAt, endsAt, location]
+      properties:
+        id:
+          type: string
+          format: uuid
+        communityId:
+          type: string
+          minLength: 1
+        title:
+          type: string
+          minLength: 1
+        startsAt:
+          type: string
+          format: date-time
+          description: Inicio en UTC
+        endsAt:
+          type: string
+          format: date-time
+          description: Fin en UTC, posterior al inicio
+        location:
+          type: string
+          minLength: 1
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        traceId:
+          type: string

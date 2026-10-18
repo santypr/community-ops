@@ -4,6 +4,8 @@ using CommunityOps.Application;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace CommunityOps.Tests;
 
@@ -60,6 +62,52 @@ public sealed class ApiTests
         await using var factory = CreateFactory("Production");
         var error = Assert.Throws<InvalidOperationException>(() => factory.CreateClient());
         Assert.Contains("InMemory", error.Message);
+    }
+
+    [Fact]
+    public async Task EmptyCatalogReturnsEmptyArray()
+    {
+        await using var factory = CreateFactory().WithWebHostBuilder(builder =>
+            builder.ConfigureServices(services =>
+                services.Replace(ServiceDescriptor.Singleton<IEventRepository>(new EmptyRepository()))));
+        using var client = factory.CreateClient();
+        var events = await client.GetFromJsonAsync<EventResponse[]>("/api/events");
+        Assert.NotNull(events);
+        Assert.Empty(events);
+    }
+
+    [Fact]
+    public async Task PersistenceFailureReturnsProblemDetailsWithoutInternalMessage()
+    {
+        await using var factory = CreateFactory("Production").WithWebHostBuilder(builder =>
+            builder.ConfigureServices(services =>
+                services.Replace(ServiceDescriptor.Singleton<IEventRepository>(new FailingRepository()))));
+        using var client = factory.CreateClient();
+        using var response = await client.GetAsync("/api/events");
+        Assert.Equal(HttpStatusCode.InternalServerError, response.StatusCode);
+        Assert.Equal("application/problem+json", response.Content.Headers.ContentType?.MediaType);
+        Assert.DoesNotContain("internal-database-detail", await response.Content.ReadAsStringAsync());
+    }
+
+    [Fact]
+    public async Task WritingEventsIsNotSupported()
+    {
+        await using var factory = CreateFactory();
+        using var client = factory.CreateClient();
+        using var response = await client.PostAsJsonAsync("/api/events", new { title = "Event" });
+        Assert.Equal(HttpStatusCode.MethodNotAllowed, response.StatusCode);
+    }
+
+    private sealed class EmptyRepository : IEventRepository
+    {
+        public Task<IReadOnlyList<CommunityOps.Domain.CommunityEvent>> ListAsync(CancellationToken cancellationToken) =>
+            Task.FromResult<IReadOnlyList<CommunityOps.Domain.CommunityEvent>>([]);
+    }
+
+    private sealed class FailingRepository : IEventRepository
+    {
+        public Task<IReadOnlyList<CommunityOps.Domain.CommunityEvent>> ListAsync(CancellationToken cancellationToken) =>
+            throw new InvalidOperationException("internal-database-detail");
     }
 
     private static WebApplicationFactory<Program> CreateFactory(string environment = "Development") =>
