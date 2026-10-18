@@ -9,6 +9,12 @@
 **Input**: Primer hito del plan: especificar identidad, permisos y gestión de
 eventos sobre la agenda pública existente, sin reconstruirla.
 
+## Clarifications
+
+### Session 2026-10-18
+
+- Q: ¿Con qué cuentas podrán identificarse los responsables de las comunidades? → A: Cuentas Microsoft y Google mediante OAuth.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Acceso de responsables (Priority: P1)
@@ -92,9 +98,11 @@ y comprobar que otro evento sigue disponible, según el ciclo aprobado en Q3.
 
 - **FR-001**: La agenda pública DEBE seguir accesible sin sesión, conservar
   sus campos actuales y su límite y orden actuales hasta otro cambio aprobado.
-- **FR-002**: El acceso de responsables DEBE identificar al usuario y permitir
-  cerrar sesión. [NEEDS CLARIFICATION: Q1 — ¿Qué proveedor y audiencia de identidad
-  se admiten, y qué datos mínimos se conservan, durante cuánto tiempo y cómo se eliminan?]
+- **FR-002**: El acceso de responsables DEBE admitir cuentas Microsoft y Google
+  mediante OAuth, identificar al usuario y permitir cerrar sesión. Identificarse
+  no concede permisos por sí solo.
+  [NEEDS CLARIFICATION: Q1 — ¿Qué audiencia de cuentas Microsoft y Google se admite,
+  y qué datos mínimos se conservan, durante cuánto tiempo y cómo se eliminan?]
 - **FR-003**: Cada acción restringida DEBE comprobar permisos sobre el recurso
   y denegar por defecto. [NEEDS CLARIFICATION: Q2 — ¿Quién concede y revoca acceso,
   qué roles/acciones existen y cuál es su ámbito por comunidad? Confirmar si
@@ -116,8 +124,8 @@ y comprobar que otro evento sigue disponible, según el ciclo aprobado en Q3.
 
 ### Key Entities *(include if feature involves data)*
 
-- **Identidad de responsable**: referencia al usuario identificado; datos,
-  audiencia y conservación pendientes de Q1.
+- **Identidad de responsable**: referencia al usuario identificado con cuenta
+  Microsoft o Google mediante OAuth; datos, audiencia y conservación pendientes de Q1.
 - **Asignación de permisos**: acciones y recursos permitidos, con concesión y
   revocación pendientes de Q2. No implica roles aprobados todavía.
 - **Comunidad**: ámbito de asociación del evento. Su administración completa
@@ -145,7 +153,8 @@ y comprobar que otro evento sigue disponible, según el ciclo aprobado en Q3.
 - Esta especificación es una propuesta, no una funcionalidad implementada
   ni una aprobación de las decisiones pendientes.
 - Q1–Q3 bloquean diseño, contratos de escritura, tareas de implementación
-  y cambios de permisos. No se ha seleccionado proveedor ni modelo de roles.
+  y cambios de permisos. Se han seleccionado Microsoft y Google mediante OAuth;
+  la audiencia, la política de datos y el modelo de roles siguen pendientes.
 - Quedan fuera inscripción de asistentes, publicaciones, anuncios, difusión
   social y administración completa de comunidades.
 - No se asume aislamiento multi-organización; si Q2 lo exige, debe especificarse

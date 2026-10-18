@@ -8,7 +8,7 @@
 
 ## Content Quality
 
-- [x] Orientada a valor y necesidades, sin seleccionar tecnología de identidad.
+- [ ] Orientada a valor y necesidades, sin seleccionar tecnología de identidad.
 - [x] Secciones obligatorias completas y escenarios priorizados.
 - [x] Alcance existente, propuesto y excluido diferenciados.
 
