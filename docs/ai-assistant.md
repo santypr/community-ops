@@ -44,6 +44,8 @@ Se inicializó sobre el repositorio existente con Specify CLI **1.2.1**,
 integración `copilot`, modo skills y scripts Bash. Python 3.11+ es un requisito
 de esta herramienta de desarrollo, no del runtime de Community Ops.
 La aplicación no depende de Specify ni necesita instalarlo para arrancar.
+Los scripts, plantillas, workflow y skills `speckit-*` proceden de Spec Kit;
+se conserva su licencia MIT en `.specify/LICENSE`.
 
 Para disponer de la misma CLI, en un entorno con `uv`:
 
@@ -87,6 +89,11 @@ el chat del agente, no ejecutables de terminal.
 5. `/speckit-tasks`: desglosar entregas verticales con pruebas y documentación.
 6. `/speckit-analyze`: revisar consistencia y resolver hallazgos críticos antes
    de `/speckit-implement`, usando también `implement-feature`.
+
+El workflow automatizado genérico incluido por la distribución no se ejecuta
+como parte de esta entrega: no incluye los pasos de aclaración y análisis.
+Usar la secuencia manual anterior; adaptar y revisar sus controles antes
+de adoptar automatización. No aprobar gates con decisiones críticas pendientes.
 
 Para retomar el borrador en un checkout nuevo sin depender del nombre de rama,
 seleccionar explícitamente `SPECIFY_FEATURE_DIRECTORY=specs/001-identity-event-management`
