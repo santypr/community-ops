@@ -7,8 +7,9 @@ verificables. Leer primero README y la documentación funcional y técnica de `d
   define casos de uso y puertos; Infrastructure implementa adaptadores; Api y
   `main.tsx` componen dependencias. No introducir frameworks de abstracción sin
   un caso real.
-- Las fuentes para arquitectura/código son React, Vite y Microsoft Docs
-  enlazadas en `docs/architecture.md`. Verificar versiones y no inventar APIs.
+- Las fuentes para arquitectura/código son React, Vite, Microsoft Docs para
+  .NET/Azure y https://aspire.dev para Aspire, enlazadas en
+  `docs/architecture.md`. Verificar versiones y no inventar APIs.
 - Mantener documentación funcional, técnica, OpenAPI, uso y despliegue en `docs`.
 - Para una funcionalidad vertical, consultar la skill `implement-feature`.
 - Añadir pruebas de reglas, errores y contrato. Validar con los comandos de

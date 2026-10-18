@@ -63,7 +63,9 @@ a nivel de cuenta, nunca permisos de escritura ni claves.
 SWA Free no permite enlazar Container Apps como backend integrado. El frontend
 usa la URL HTTPS pública de la API incorporada durante su build y CORS restringe
 el origen a SWA. CORS no es autenticación: el catálogo es intencionalmente público.
-No se despliega el dashboard Aspire en Azure.
+No se despliega el dashboard Aspire en Azure. **No se crea ni se requiere un
+clúster Kubernetes**: el destino es Azure Container Apps. DCP es una herramienta
+interna de orquestación local de Aspire, no un destino de despliegue del proyecto.
 
 Cosmos mantiene endpoint de red público con autenticación local deshabilitada.
 No es una topología de red privada. Para producción sensible definir aislamiento
@@ -72,12 +74,14 @@ de datos antes de ampliar el alcance. Las cuotas free tier no garantizan coste c
 
 ## Fuentes de verdad
 
-Para arquitectura y código se priorizan las referencias oficiales, no tutoriales:
+Para arquitectura y código se priorizan React, Vite y Microsoft Docs para
+.NET/Azure; para Aspire, su documentación oficial en **https://aspire.dev**:
 
 - [Microsoft: Clean Architecture y aplicaciones web](https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures)
 - [Microsoft: Minimal APIs](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/overview?view=aspnetcore-10.0)
 - [Microsoft: errores y Problem Details](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-10.0)
-- [Microsoft: Aspire](https://learn.microsoft.com/en-us/dotnet/aspire/get-started/aspire-overview)
+- [Aspire: documentación oficial](https://aspire.dev/)
+- [Aspire: integración JavaScript y Vite](https://aspire.dev/integrations/frameworks/javascript/)
 - [Microsoft: Cosmos SDK para .NET](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/sdk-dotnet-v3)
 - [Microsoft: RBAC Cosmos](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/security/how-to-grant-data-plane-access)
 - [Microsoft: Container Apps como backend de SWA](https://learn.microsoft.com/en-us/azure/static-web-apps/apis-container-apps)

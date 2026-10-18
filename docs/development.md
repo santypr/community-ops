@@ -19,7 +19,9 @@ Aspire muestra la dirección autenticada del dashboard y los endpoints de sus
 recursos. El perfil de desarrollo permite HTTP **únicamente para uso local**;
 no exponer estos puertos ni reutilizar esa configuración en Azure.
 El SDK descarga las herramientas de orquestación al restaurar; no se requiere
-instalar un workload antiguo de Aspire.
+instalar un workload antiguo de Aspire ni disponer de un clúster Kubernetes.
+La fuente oficial de Aspire es [aspire.dev](https://aspire.dev/), incluida su
+[integración JavaScript/Vite](https://aspire.dev/integrations/frameworks/javascript/).
 
 Si aparece ASPIRE010, indica que no se usa el bundle del CLI Aspire. El AppHost
 usa las herramientas suministradas por NuGet; no depende de funciones del bundle.

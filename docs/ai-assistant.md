@@ -23,7 +23,8 @@ con herramientas restringidas, se podrá añadir ese rol específico.
 Pedir al agente implementar un caso de uso y utilizar `implement-feature`.
 Debe consultar contexto y contrato, separar capas, comprobar documentación
 oficial y entregar pruebas y limitaciones. Las referencias oficiales React,
-Vite y Microsoft Docs están en `docs/architecture.md`; el repositorio de ejemplo
+Vite, Microsoft Docs (.NET/Azure) y https://aspire.dev (Aspire) están en
+`docs/architecture.md`; el repositorio de ejemplo
 orienta la personalización del asistente, no la arquitectura de la aplicación.
 
 El descubrimiento de skills depende del editor, versión y configuración.
