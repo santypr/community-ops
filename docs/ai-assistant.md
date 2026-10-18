@@ -64,6 +64,8 @@ trabajar con el árbol limpio y comparar el resultado. `init-options.json`
 registra la versión; los manifiestos permiten identificar artefactos gestionados.
 Las plantillas locales de spec, plan y tareas se han adaptado para permisos,
 Constitution Check y pruebas obligatorias. Conservar esas adaptaciones al actualizar.
+La skill `speckit-taskstoissues` también se adapta para deduplicar por directorio
+de funcionalidad e identificador de tarea, no por `T001` global al repositorio.
 No se instalaron extensiones de Git ni se crearon otras ramas.
 
 ## Flujo por capacidad
