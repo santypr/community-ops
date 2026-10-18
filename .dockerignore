@@ -1,0 +1,9 @@
+**/bin
+**/obj
+**/node_modules
+**/.env*
+**/*.tfstate*
+.git
+.github
+src/frontend
+infraestructure

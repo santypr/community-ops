@@ -1,0 +1,4 @@
+subscription_id = "00000000-0000-0000-0000-000000000000"
+name_prefix     = "community-ops-demo"
+location        = "westeurope"
+api_image       = "ghcr.io/your-organization/community-ops-api:initial"

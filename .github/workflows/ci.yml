@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: 10.0.x
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: src/frontend/package-lock.json
+      - run: dotnet build CommunityOps.slnx --configuration Release
+      - run: dotnet test CommunityOps.slnx --configuration Release --no-build
+      - run: dotnet format CommunityOps.slnx --verify-no-changes --no-restore
+      - run: npm ci
+        working-directory: src/frontend
+      - run: npm run lint && npm test && npm run build && npm audit --audit-level=high
+        working-directory: src/frontend
+      - uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3.1.2
+        with:
+          terraform_version: 1.14.3
+      - run: terraform -chdir=infraestructure init -backend=false -lockfile=readonly
+      - run: terraform -chdir=infraestructure fmt -check
+      - run: terraform -chdir=infraestructure validate

@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/backend/">
+    <Project Path="src/backend/CommunityOps.Api/CommunityOps.Api.csproj" />
+    <Project Path="src/backend/CommunityOps.AppHost/CommunityOps.AppHost.csproj" />
+    <Project Path="src/backend/CommunityOps.Application/CommunityOps.Application.csproj" />
+    <Project Path="src/backend/CommunityOps.Domain/CommunityOps.Domain.csproj" />
+    <Project Path="src/backend/CommunityOps.Infrastructure/CommunityOps.Infrastructure.csproj" />
+    <Project Path="src/backend/CommunityOps.Tests/CommunityOps.Tests.csproj" />
+  </Folder>
+</Solution>
