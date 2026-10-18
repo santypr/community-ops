@@ -3,6 +3,11 @@
 Responsabilidad del agente general: entregar cambios pequeños, completos y
 verificables. Leer primero README y la documentación funcional y técnica de `docs`.
 
+- Consultar `.specify/memory/constitution.md` y la especificación de la capacidad.
+  Resolver decisiones críticas con `speckit-clarify` antes de `speckit-plan`;
+  ejecutar `speckit-analyze` tras generar tareas y antes de implementar.
+  Un borrador no autoriza cambios de permisos ni operaciones de escritura.
+
 - Mantener Clean Architecture: Domain no depende de otras capas; Application
   define casos de uso y puertos; Infrastructure implementa adaptadores; Api y
   `main.tsx` componen dependencias. No introducir frameworks de abstracción sin

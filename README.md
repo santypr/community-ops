@@ -37,6 +37,8 @@ Si el entorno no permite ejecutar Aspire, consulta el arranque separado en la
 - [Manual de usuario](docs/user-manual.md)
 - [Guía de despliegue](docs/deployment-guide.md)
 - [Asistente IA: decisiones y uso](docs/ai-assistant.md)
+- [Constitución del proyecto (propuesta 1.0.0)](.specify/memory/constitution.md)
+- [Primer hito: identidad, permisos y eventos (borrador)](specs/001-identity-event-management/spec.md)
 
 La infraestructura no se despliega automáticamente. Cosmos usa identidad
 administrada sin claves; el modo en memoria se limita a Development.

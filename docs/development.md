@@ -87,3 +87,26 @@ credenciales Azure; no aplica infraestructura.
 
 La versión directa de MessagePack en AppHost corrige una dependencia transitiva
 de Aspire afectada por GHSA-qhrr-8q5h-9q3h; revisar al actualizar Aspire.
+
+## Comprobaciones de Spec Kit
+
+Para cambios en el proceso de especificación, desde la raíz:
+
+```sh
+specify integration status
+for script in .specify/scripts/bash/*.sh; do bash -n "$script" || break; done
+.specify/scripts/bash/resolve-template.sh constitution-template --json
+.specify/scripts/bash/resolve-template.sh spec-template --json
+.specify/scripts/bash/resolve-template.sh plan-template --json
+.specify/scripts/bash/resolve-template.sh tasks-template --json
+.specify/scripts/bash/resolve-template.sh checklist-template --json
+SPECIFY_FEATURE_DIRECTORY=specs/001-identity-event-management \
+  .specify/scripts/bash/check-prerequisites.sh --paths-only --json
+```
+
+`specify integration status` avisa de cuatro archivos gestionados personalizados:
+las tres plantillas de spec/plan/tareas y la skill de conversión a issues.
+Es una diferencia intencional; no debe informar archivos ausentes ni rutas inválidas.
+El chequeo completo de prerrequisitos del primer borrador falla por falta de
+`plan.md`: Q1–Q3 deben resolverse antes de crearlo. Estas comprobaciones no validan
+autenticación futura, descubrimiento de skills en el editor ni un despliegue Azure.
